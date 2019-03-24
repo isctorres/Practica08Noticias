@@ -7,7 +7,7 @@ using Practica08Noticias.Models;
 
 namespace Practica08Noticias.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

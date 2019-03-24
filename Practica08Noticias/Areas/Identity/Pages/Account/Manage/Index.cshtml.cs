@@ -8,18 +8,19 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Practica08Noticias.Data;
 
 namespace Practica08Noticias.Areas.Identity.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
 
         public IndexModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -38,7 +39,17 @@ namespace Practica08Noticias.Areas.Identity.Pages.Account.Manage
         public InputModel Input { get; set; }
 
         public class InputModel
-        {
+        {   
+            // linea agregada
+            [Required]
+            [Display(Name = "Nombre Completo")]
+            public string Nombre { get; set; }
+
+            //linea agregada
+            [Required]
+            [Display(Name = "Edad")]
+            public int Edad { get; set; }
+
             [Required]
             [EmailAddress]
             public string Email { get; set; }
@@ -59,11 +70,13 @@ namespace Practica08Noticias.Areas.Identity.Pages.Account.Manage
             var userName = await _userManager.GetUserNameAsync(user);
             var email = await _userManager.GetEmailAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-
             Username = userName;
 
             Input = new InputModel
             {
+                // estas lineas se agregaron
+                Nombre = user.Nombre,
+                Edad = user.Edad,
                 Email = email,
                 PhoneNumber = phoneNumber
             };
@@ -86,6 +99,10 @@ namespace Practica08Noticias.Areas.Identity.Pages.Account.Manage
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
+            // Lineas agregas
+            user.Nombre = Input.Nombre;
+            user.Edad = Input.Edad;
+
             var email = await _userManager.GetEmailAsync(user);
             if (Input.Email != email)
             {
@@ -107,6 +124,9 @@ namespace Practica08Noticias.Areas.Identity.Pages.Account.Manage
                     throw new InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
                 }
             }
+
+            // linea agregada
+            await _userManager.UpdateAsync(user);
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";

@@ -1,8 +1,27 @@
-﻿@{
+﻿@model List<Noticias>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Rubensin News</h1>
+        <p class="lead">Al tanto de las noticias!!</p>
+    </div>
 </div>
+
+@foreach (var item in Model)
+{
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">@item.Titulo</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+        </div>
+        <div class="card-footer">Publicado el Fecha por el Usuario</div>
+    </div>
+
+    <li>@ViewData["Message"]</li>
+}

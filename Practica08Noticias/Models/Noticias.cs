@@ -28,5 +28,7 @@ namespace Practica08Noticias.Models
 
         public int CategoriaID { get; set; }
         public virtual Categorias Categorias { get; set; }
+
+        public string Usuario { get; set; }
     }
 }
