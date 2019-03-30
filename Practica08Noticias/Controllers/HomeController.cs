@@ -29,7 +29,20 @@ namespace Practica08Noticias.Controllers
                 .OrderByDescending(n => n.FechaPublicacion)
                 .Take(10);
 
+            // pasamos la lista de noticias a la vista para mostrarlas
             return View(noticias.ToList());
+        }
+
+        public IActionResult Noticia(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var noticia = _context.Noticias
+                .FirstOrDefault(m => m.NoticiaID == id);
+            if (noticia == null)
+                return NotFound();
+            return View(noticia);
         }
 
         public IActionResult Privacy()

@@ -73,3 +73,4 @@ C:\Users\iscto\source\repos\Practica08Noticias\Practica08Noticias\obj\Debug\netc
 C:\Users\iscto\source\repos\Practica08Noticias\Practica08Noticias\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\ResetPasswordConfirmation.g.cshtml.cs
 C:\Users\iscto\source\repos\Practica08Noticias\Practica08Noticias\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Error.g.cshtml.cs
 C:\Users\iscto\source\repos\Practica08Noticias\Practica08Noticias\obj\Debug\netcoreapp2.2\Practica08Noticias.csprojAssemblyReference.cache
+C:\Users\iscto\source\repos\Practica08Noticias\Practica08Noticias\obj\Debug\netcoreapp2.2\Razor\Views\Home\Noticia.g.cshtml.cs

@@ -1,4 +1,4 @@
-﻿@model List<Noticias>
+﻿@model IEnumerable<Noticias>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -6,22 +6,20 @@
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <h1 class="display-4">Rubensin News</h1>
-        <p class="lead">Al tanto de las noticias!!</p>
+        <p class="lead">Esta página muestra las últimas 10 noticias de la mas reciente a la más antigua.</p>
     </div>
 </div>
 
-@foreach (var item in Model)
+@foreach (var noticia in Model)
 {
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">@item.Titulo</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+            <h4 class="card-title">@noticia.Titulo</h4>
+            <p class="card-text">@noticia.Contenido</p>
+            <a href="#" class="card-link">@noticia.Categorias.Nombre</a>
+            <a asp-controller="Home" asp-action="Noticia" asp-route-id="@noticia.NoticiaID" class="card-link">Leer mas..</a>
         </div>
-        <div class="card-footer">Publicado el Fecha por el Usuario</div>
+        <div class="card-footer">Publicado el @noticia.FechaPublicacion</div>
     </div>
-
-    <li>@ViewData["Message"]</li>
 }
+    
